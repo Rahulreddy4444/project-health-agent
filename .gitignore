@@ -1,0 +1,24 @@
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment Variables (CRITICAL)
+.env
+.env.local
+
+# Project Specific
+reference/
+outputs/
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# IDE / OS Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
