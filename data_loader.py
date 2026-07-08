@@ -16,7 +16,7 @@ from typing import Dict, List, Optional, Any
 import config
 
 
-def _parse_duration_to_days(duration_str: str) -> Optional[float]:
+def _parse_duration_to_days(duration_str: Any) -> Optional[float]:
     """Parse duration strings like '170d', '18d', '0' into float days."""
     if pd.isna(duration_str):
         return None
@@ -29,7 +29,7 @@ def _parse_duration_to_days(duration_str: str) -> Optional[float]:
     return None
 
 
-def _parse_variance_to_days(variance_str: str) -> Optional[float]:
+def _parse_variance_to_days(variance_str: Any) -> Optional[float]:
     """Parse variance strings like '-2d', '0', '1d' into float days (negative = late)."""
     if pd.isna(variance_str):
         return None
@@ -118,7 +118,7 @@ def load_summary(filepath: Path) -> Dict[str, Any]:
     except Exception:
         return {"_error": "Summary sheet not found", "_available": False}
 
-    summary = {"_available": True, "_raw": {}}
+    summary: Dict[str, Any] = {"_available": True, "_raw": {}}
     
     # Build a key-value dict from the two-column layout
     col_a = df.columns[0]

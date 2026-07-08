@@ -12,7 +12,7 @@ Produces formatted Markdown reports for each project with:
 import json
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Tuple, Optional
 
 import config
 from rag_engine import assess_project
@@ -57,11 +57,11 @@ def _format_metrics_section(dimensions: List[Dict]) -> str:
     return "\n".join(parts)
 
 
-def generate_weekly_report(project: Dict) -> str:
+def generate_weekly_report(project: Dict) -> tuple[str, dict[str, Any]]:
     """
     Generate a complete weekly health report for a single project.
     
-    Returns the report as a Markdown string.
+    Returns the report as a Markdown string and the assessment dictionary.
     """
     # Run assessment
     assessment = assess_project(project)
@@ -135,11 +135,11 @@ def generate_weekly_report(project: Dict) -> str:
     return report, assessment
 
 
-def save_weekly_report(project: Dict, output_dir: Path = None) -> str:
+def save_weekly_report(project: Dict, output_dir: Optional[Path] = None) -> Tuple[str, Dict[str, Any]]:
     """
     Generate and save a weekly report for a project.
     
-    Returns the path to the saved report.
+    Returns a tuple containing the path to the saved report and the assessment dictionary.
     """
     if output_dir is None:
         output_dir = config.WEEKLY_DIR

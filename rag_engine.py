@@ -59,7 +59,7 @@ def score_schedule_adherence(tasks: List[Dict], summary: Dict) -> Dict[str, Any]
     Uses variance_days field (negative = late).
     Falls back to comparing baseline vs actual dates.
     """
-    result = {
+    result: Dict[str, Any] = {
         "dimension": "Schedule Adherence",
         "weight": config.WEIGHTS["schedule_adherence"],
         "score": None,
@@ -133,7 +133,7 @@ def score_completion_progress(tasks: List[Dict], summary: Dict) -> Dict[str, Any
     Score completion progress by comparing actual % complete against expected
     progress based on elapsed time.
     """
-    result = {
+    result: Dict[str, Any] = {
         "dimension": "Completion Progress",
         "weight": config.WEIGHTS["completion_progress"],
         "score": None,
@@ -148,7 +148,7 @@ def score_completion_progress(tasks: List[Dict], summary: Dict) -> Dict[str, Any
     today = summary.get("todays_date") or datetime.now()
     actual_pct = summary.get("percent_complete")
     
-    if not all([start, end, actual_pct is not None]):
+    if start is None or end is None or actual_pct is None:
         # Fallback: calculate from tasks
         active = _get_active_tasks(tasks)
         if active:
@@ -161,7 +161,7 @@ def score_completion_progress(tasks: List[Dict], summary: Dict) -> Dict[str, Any
                 start = min(starts)
                 end = max(ends)
         
-        if not all([start, end, actual_pct is not None]):
+        if start is None or end is None or actual_pct is None:
             result["reasoning"] = "Insufficient data to assess completion progress."
             result["metrics"]["data_available"] = False
             return result
@@ -236,7 +236,7 @@ def score_milestone_health(tasks: List[Dict], summary: Dict) -> Dict[str, Any]:
     """
     Score the health of milestones and phase-level tasks.
     """
-    result = {
+    result: Dict[str, Any] = {
         "dimension": "Milestone Health",
         "weight": config.WEIGHTS["milestone_health"],
         "score": None,
@@ -334,7 +334,7 @@ def score_task_risk_profile(tasks: List[Dict], summary: Dict) -> Dict[str, Any]:
     """
     Analyze the distribution of task health across the project.
     """
-    result = {
+    result: Dict[str, Any] = {
         "dimension": "Task Risk Profile",
         "weight": config.WEIGHTS["task_risk_profile"],
         "score": None,
@@ -429,7 +429,7 @@ def score_stakeholder_signals(tasks: List[Dict], summary: Dict, comments: List[D
     """
     Qualitative assessment from PM comments, on-hold items, and summary indicators.
     """
-    result = {
+    result: Dict[str, Any] = {
         "dimension": "Stakeholder Signals",
         "weight": config.WEIGHTS["stakeholder_signals"],
         "score": None,

@@ -8,13 +8,16 @@ Uses python-pptx to create professional slides with RAG status visualization.
 import json
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, Any, List, Tuple
+from typing import TYPE_CHECKING, Dict, Any, List, Optional, Tuple
 
 from pptx import Presentation
 from pptx.util import Inches, Pt, Emu
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
+
+if TYPE_CHECKING:
+    from pptx.presentation import Presentation as PresentationType
 
 import config
 
@@ -101,7 +104,7 @@ def _add_rectangle(slide, left, top, width, height, fill_color=None, border_colo
 
 # ─── Slide Builders ──────────────────────────────────────────────────────────
 
-def _build_title_slide(prs: Presentation, assessments: List[Dict]):
+def _build_title_slide(prs: "PresentationType", assessments: List[Dict]):
     """Slide 1: Title slide with month and portfolio snapshot."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])  # Blank layout
     _set_slide_bg(slide)
@@ -158,7 +161,7 @@ def _build_title_slide(prs: Presentation, assessments: List[Dict]):
                   alignment=PP_ALIGN.CENTER)
 
 
-def _build_portfolio_overview_slide(prs: Presentation, assessments: List[Dict]):
+def _build_portfolio_overview_slide(prs: "PresentationType", assessments: List[Dict]):
     """Slide 2: Portfolio overview table with RAG status for all projects."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide)
@@ -191,7 +194,7 @@ def _build_portfolio_overview_slide(prs: Presentation, assessments: List[Dict]):
         p.font.bold = True
         p.font.color.rgb = COLORS["accent"]
         cell.fill.solid()
-        cell.fill.fore_color.rgb = COLORS["bg_card"]
+        cell.fill.fore_color.rgb = COLORS["bg_card"]  # type: ignore[assignment]
     
     # Column widths
     widths = [2.5, 1.3, 1.5, 0.7, 0.7, 0.7, 1.0]
@@ -228,10 +231,10 @@ def _build_portfolio_overview_slide(prs: Presentation, assessments: List[Dict]):
                 p.font.color.rgb = COLORS["text_white"]
             
             cell.fill.solid()
-            cell.fill.fore_color.rgb = COLORS["bg_dark"] if row_idx % 2 == 0 else COLORS["bg_card"]
+            cell.fill.fore_color.rgb = COLORS["bg_dark"] if row_idx % 2 == 0 else COLORS["bg_card"]  # type: ignore[assignment]
 
 
-def _build_trend_analysis_slide(prs: Presentation, assessments: List[Dict]):
+def _build_trend_analysis_slide(prs: "PresentationType", assessments: List[Dict]):
     """Slide 3: Dimension-level health across projects."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide)
@@ -303,7 +306,7 @@ def _build_trend_analysis_slide(prs: Presentation, assessments: List[Dict]):
                   insight, font_size=11, color=COLORS["amber"] if dim_issues else COLORS["green"])
 
 
-def _build_risk_spotlight_slide(prs: Presentation, assessments: List[Dict]):
+def _build_risk_spotlight_slide(prs: "PresentationType", assessments: List[Dict]):
     """Slide 4: Top emerging risks across the portfolio."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide)
@@ -366,7 +369,7 @@ def _build_risk_spotlight_slide(prs: Presentation, assessments: List[Dict]):
                       alignment=PP_ALIGN.CENTER)
 
 
-def _build_project_deep_dive_slide(prs: Presentation, assessment: Dict):
+def _build_project_deep_dive_slide(prs: "PresentationType", assessment: Dict):
     """Slide 5-6: Deep dive for projects needing attention."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide)
@@ -436,7 +439,7 @@ def _build_project_deep_dive_slide(prs: Presentation, assessment: Dict):
         y += 0.35
 
 
-def _build_recommendations_slide(prs: Presentation, assessments: List[Dict], synthesis_text: str):
+def _build_recommendations_slide(prs: "PresentationType", assessments: List[Dict], synthesis_text: str):
     """Slide 7: Portfolio-level recommendations and next steps."""
     slide = prs.slides.add_slide(prs.slide_layouts[6])
     _set_slide_bg(slide)
@@ -471,7 +474,7 @@ def _build_recommendations_slide(prs: Presentation, assessments: List[Dict], syn
 
 
 def build_monthly_presentation(assessments: List[Dict], synthesis_text: str = "",
-                                output_path: Path = None) -> str:
+                                output_path: Optional[Path] = None) -> str:
     """
     Build the complete monthly executive presentation.
     
