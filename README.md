@@ -37,32 +37,41 @@ presentation_builder.py → Executive PowerPoint (python-pptx)
 
 ## Quick Start
 
-### 1. Install Dependencies
+### 1. Create a Virtual Environment
+
+It is highly recommended to use a virtual environment to isolate project dependencies.
 
 ```powershell
 cd C:\Users\91938\Desktop\project-health-agent
-py -m pip install -r requirements.txt
+py -m venv venv
+.\venv\Scripts\activate
 ```
 
-### 2. Verify Setup
+### 2. Install Dependencies
+
+```powershell
+pip install -r requirements.txt
+```
+
+### 3. Verify Setup
 
 ```powershell
 py main.py --test
 ```
 
-### 3. Generate Weekly Reports
+### 4. Generate Weekly Reports
 
 ```powershell
 py main.py --weekly
 ```
 
-### 4. Generate Monthly Presentation
+### 5. Generate Monthly Presentation
 
 ```powershell
 py main.py --monthly
 ```
 
-### 5. Run Everything (Weekly + Monthly)
+### 6. Run Everything (Weekly + Monthly)
 
 ```powershell
 py main.py --full
