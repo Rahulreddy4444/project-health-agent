@@ -481,7 +481,7 @@ def build_monthly_presentation(assessments: List[Dict], synthesis_text: str = ""
     Creates a 5-7 slide PowerPoint deck.
     """
     if output_path is None:
-        output_path = config.MONTHLY_DIR / f"Monthly_Health_Review_{datetime.now().strftime('%Y_%m')}.pptx"
+        output_path = config.MONTHLY_DIR / f"Monthly_Health_Review_{datetime.now().strftime('%Y_%m_%d')}.pptx"
     
     prs = Presentation()
     prs.slide_width = Inches(10)

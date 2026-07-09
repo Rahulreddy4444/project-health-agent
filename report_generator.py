@@ -150,14 +150,14 @@ def save_weekly_report(project: Dict, output_dir: Optional[Path] = None) -> Tupl
     
     # Create filename
     project_name = assessment["project_name"].replace(" ", "_").replace("/", "-")[:50]
-    date_str = assessment["assessment_date"]
-    filename = f"{date_str}_{project_name}_health_report.md"
+    run_date_str = datetime.now().strftime('%Y-%m-%d')
+    filename = f"{run_date_str}_{project_name}_health_report.md"
     
     filepath = output_dir / filename
     filepath.write_text(report_content, encoding="utf-8")
     
     # Also save assessment as JSON for monthly synthesis
-    json_filename = f"{date_str}_{project_name}_assessment.json"
+    json_filename = f"{run_date_str}_{project_name}_assessment.json"
     json_path = output_dir / json_filename
     
     # Make assessment JSON-serializable

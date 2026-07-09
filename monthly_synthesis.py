@@ -69,7 +69,7 @@ def generate_monthly_report(assessments: Optional[List[Dict]] = None) -> str:
     synthesis = generate_cross_project_synthesis(assessments)
     
     # Save synthesis as Markdown
-    synthesis_path = config.MONTHLY_DIR / f"Monthly_Synthesis_{datetime.now().strftime('%Y_%m')}.md"
+    synthesis_path = config.MONTHLY_DIR / f"Monthly_Synthesis_{datetime.now().strftime('%Y_%m_%d')}.md"
     
     synthesis_report = f"""# Monthly Project Health Synthesis
 
