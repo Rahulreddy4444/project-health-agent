@@ -1,0 +1,144 @@
+{
+  "project_name": "Zycus - Titan S2P Implementation",
+  "filename": "S2P Project.xlsx",
+  "assessment_date": "2026-07-02",
+  "overall_rag": "Red",
+  "composite_score": 1.65,
+  "confidence": "High",
+  "dimensions": [
+    {
+      "dimension": "Schedule Adherence",
+      "weight": 0.3,
+      "score": 1,
+      "label": "Red",
+      "reasoning": "Schedule is significantly slipping. Average delay is 19.6 days with 64% of tasks running behind baseline. Maximum delay reaches 81.0 days.",
+      "metrics": {
+        "total_tasks_with_variance": 264,
+        "late_tasks": 169,
+        "pct_late": 64.0,
+        "avg_lateness_days": 19.6,
+        "max_lateness_days": 81.0,
+        "data_available": true
+      }
+    },
+    {
+      "dimension": "Completion Progress",
+      "weight": 0.25,
+      "score": 3,
+      "label": "Green",
+      "reasoning": "Project is tracking well. At 71% complete vs 57% expected based on timeline. 262 of 481 active tasks are done.",
+      "metrics": {
+        "actual_pct_complete": 71.0,
+        "expected_pct_complete": 56.9,
+        "progress_ratio": 1.25,
+        "elapsed_days": 209,
+        "total_duration_days": 367,
+        "days_remaining": 158,
+        "data_available": true,
+        "total_active_tasks": 481,
+        "completed_tasks": 262,
+        "not_started_tasks": 197,
+        "in_progress_tasks": 22
+      }
+    },
+    {
+      "dimension": "Milestone Health",
+      "weight": 0.2,
+      "score": 2,
+      "label": "Amber",
+      "reasoning": "Some milestones need attention. 67% are on track, but 1 are at risk (Phase 1- S2C).",
+      "metrics": {
+        "total_milestones": 18,
+        "completed": 8,
+        "on_track": 12,
+        "at_risk": 1,
+        "red": 5,
+        "on_track_pct": 66.7,
+        "milestone_names_at_risk": [
+          "Phase 1- S2C"
+        ],
+        "milestone_names_red": [
+          "Configuration and Build phase",
+          "Production & Cutover",
+          "Hyper Care(Measure and Adoption) Solution",
+          "Phase 2 - P2P",
+          "Configuration Documentation workshop"
+        ],
+        "data_available": true
+      }
+    },
+    {
+      "dimension": "Task Risk Profile",
+      "weight": 0.15,
+      "score": 2,
+      "label": "Amber",
+      "reasoning": "Task risk profile shows moderate concern. 89% of tasks are Green, but 10% are Red and 1% are Amber.",
+      "metrics": {
+        "total_active_incomplete": 219,
+        "green": 195,
+        "amber": 2,
+        "red": 22,
+        "unknown": 0,
+        "green_pct": 89.0,
+        "amber_pct": 0.9,
+        "red_pct": 10.0,
+        "data_available": true
+      }
+    },
+    {
+      "dimension": "Stakeholder Signals",
+      "weight": 0.1,
+      "score": 2,
+      "label": "Amber",
+      "reasoning": "Mixed stakeholder signals: 3 task(s) on hold; project flagged as High risk; 1 comment(s) flag concerns.",
+      "metrics": {
+        "on_hold_count": 3,
+        "summary_health": "Green",
+        "at_risk_level": "high",
+        "total_comments": 9,
+        "negative_signals": 1,
+        "positive_signals": 0,
+        "comment_excerpts": [
+          "As per scheduled agenda we have coverd all sessions",
+          "Due to parallel phase 1 activities onsite workshop dates are impacted",
+          "OTK to provde Sample for processing further with Design conclusion however the complete data will be providd by or before July 10",
+          "JDE mapping is pending only",
+          "JDE field mapping remain to complete for PO outbound & GR Inbound @vinayaka.soratoor@zycus.com"
+        ],
+        "data_available": true
+      }
+    }
+  ],
+  "composite_details": {
+    "overall_rag": "Red",
+    "composite_score": 1.65,
+    "composite_score_raw": 1.95,
+    "penalty_applied": 0.3,
+    "red_dimension_count": 1,
+    "unknown_dimension_count": 0,
+    "overrides_applied": [],
+    "confidence": "High",
+    "scored_dimensions": 5,
+    "total_dimensions": 5
+  },
+  "key_risks": [
+    "\ud83d\udd34 Schedule Adherence: Schedule is significantly slipping. Average delay is 19.6 days with 64% of tasks running behind baseline. Maximum delay reaches 81.0 days.",
+    "\ud83d\udfe1 Milestone Health: Some milestones need attention. 67% are on track, but 1 are at risk (Phase 1- S2C).",
+    "\ud83d\udfe1 Task Risk Profile: Task risk profile shows moderate concern. 89% of tasks are Green, but 10% are Red and 1% are Amber.",
+    "\ud83d\udfe1 Stakeholder Signals: Mixed stakeholder signals: 3 task(s) on hold; project flagged as High risk; 1 comment(s) flag concerns."
+  ],
+  "recommendations": [
+    "Conduct an urgent schedule recovery workshop with the PM to identify acceleration opportunities.",
+    "Perform a task-level triage to re-prioritize and resolve blocked items.",
+    "Schedule a stakeholder alignment meeting to address concerns and reset expectations."
+  ],
+  "summary_snapshot": {
+    "project_manager": "Aftab Hashambhai",
+    "project_stage": "Configuration and Build phase",
+    "percent_complete": 0.71,
+    "project_start": "2025-12-05",
+    "project_end": "2026-12-07",
+    "at_risk": "High"
+  },
+  "data_quality_score": 93.3
+}

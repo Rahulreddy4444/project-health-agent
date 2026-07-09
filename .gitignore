@@ -10,7 +10,7 @@ __pycache__/
 
 # Project Specific
 reference/
-outputs/
+# outputs/
 
 # Virtual Environments
 venv/
